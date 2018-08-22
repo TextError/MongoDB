@@ -9,9 +9,14 @@ const validateRegisterInput = require('../../../validation/register');
 //Load user model
 const User = require('../../../models/User_Scheema');
 
-//@route   Get api/users/register
+//@route   Post api/users/register
 //desc     Register user
 //@access  Public
+
+router.get('/register', (req,res) => {
+  res.json({msg:'test'})
+})
+
 router.post('/register', (req,res) => {
   
   const {errors, isValid } = validateRegisterInput(req.body);
