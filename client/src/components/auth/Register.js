@@ -21,7 +21,9 @@ export default class Register extends Component {
   }
 
   onSubmit = (e) => {
+
     e.preventDefault();
+    
     const newUser = {
       name: this.state.name,
       email: this.state.email,
@@ -85,7 +87,7 @@ export default class Register extends Component {
                 <div className="form-group">
                   <input 
                     type="password" 
-                    className={classnames('form-control form-control-lg', {'is-invalid': errros.password2})}
+                    className={classnames('form-control form-control-lg', {'is-invalid': errors.password2})}
                     placeholder="Confirm Password" 
                     name="password2"
                     value={this.state.password2}
