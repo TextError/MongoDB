@@ -59,7 +59,7 @@ class Register extends Component {
                 <div className="form-group">
                   <input 
                     type="text" 
-                    className={classnames('form-control form-control-lg', {'is-invalid': errors.name})}
+                    className={classnames('form-control form-control-lg is-invalid', {'is-invalid': errors.name})}
                     placeholder="Name" 
                     name="name" 
                     value={this.state.name}
