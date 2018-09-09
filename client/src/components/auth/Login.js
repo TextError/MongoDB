@@ -16,9 +16,11 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
 
-    
+    if(nextProps.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
 
-    if (nextProps.errors) {
+    if(nextProps.errors) {
       this.setState({
         errors: nextProps.errors
       });
@@ -33,6 +35,13 @@ class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    this.props.loginUser(userData);
   }
 
   render() {
@@ -46,21 +55,21 @@ class Login extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
               <p className="lead text-center">Sign in to your DevConnector account</p>
-              <form onChange={this.onChange}>
+              <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input 
                     type="email" 
                     className={classnames('form-control form-control-lg', { 'is-invalid': errors.email })}
                     placeholder="Email Address" 
                     name="email"
-                    onSubmit={this.onSubmit}
+                    onChange={this.onChange}
                      />
                      {errors.email && (<div className='invalid-feedback'>{errors.email}</div>)}
                 </div>
                 <div className="form-group">
                   <input
                    type="password" 
-                   className={classnames('form-control, form-control-lg', {'is-invalid': errors.password})}
+                   className={classnames('form-control form-control-lg', {'is-invalid': errors.password})}
                    placeholder="Password" 
                    name="password"
                    onChange={this.onChange}
@@ -77,7 +86,7 @@ class Login extends Component {
   }
 }
 
-Login.prototype = {
+Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -88,4 +97,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 });
 
-export default connect(null, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser })(Login);
