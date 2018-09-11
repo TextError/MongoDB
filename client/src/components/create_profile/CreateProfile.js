@@ -10,7 +10,6 @@ class CreateProfile extends Component {
   constructor(props) {
     super(props);
     this.state= {
-      displaySocialInputs: false,
       handle: '',
       company: '',
       website: '',
@@ -53,7 +52,54 @@ class CreateProfile extends Component {
       { label: 'Intern', value: 'Intern' },
       { label: 'Other', value: 'Other' }
     ];
-    const { errors } = this.state
+    const { errors,displaySocialInputs } = this.state;
+    let displaySocialInputs;
+    if (displaySocialInputs) {
+      socialInputs = (
+        <div>
+          <InputGroup 
+            placeholder='Twitter profile URL'
+            name= 'twitter'
+            icon= 'fab fa-twitter'
+            value= {this.state.twitter}
+            onChange= {this.onChange}
+            error= {errors.twitter}
+          />
+          <InputGroup 
+            placeholder='Facebook profile URL'
+            name= 'facebook'
+            icon= 'fab fa-facebook'
+            value= {this.state.facebook}
+            onChange= {this.onChange}
+            error= {errors.facebook}
+          />
+          <InputGroup 
+            placeholder='Linkedin profile URL'
+            name= 'linkedin'
+            icon= 'fab fa-linkedin'
+            value= {this.state.linkedin}
+            onChange= {this.onChange}
+            error= {errors.linkedin}
+          />
+          <InputGroup 
+            placeholder='Youtube profile URL'
+            name= 'youtube'
+            icon= 'fab fa-youtube'
+            value= {this.state.youtube}
+            onChange= {this.onChange}
+            error= {errors.youtube}
+          />
+          <InputGroup 
+            placeholder='Instagram profile URL'
+            name= 'instagram'
+            icon= 'fab fa-instagram'
+            value= {this.state.instagram}
+            onChange= {this.onChange}
+            error= {errors.instagram}
+          />
+        </div>
+      )
+    }
 
     return (
       <div className='create-profile'>
@@ -142,6 +188,12 @@ class CreateProfile extends Component {
                     </button>
                     <span className='text-muted'> Optional </span>
                 </div>
+                {socialInputs}
+                <input 
+                  type='submit'
+                  value='Submit'
+                  className='btn btn-info btn-block mt-4'
+                />
               </form>
             </div>
           </div>
