@@ -10,6 +10,7 @@ class CreateProfile extends Component {
   constructor(props) {
     super(props);
     this.state= {
+      displaySocialInputs: false,
       handle: '',
       company: '',
       website: '',
@@ -21,7 +22,7 @@ class CreateProfile extends Component {
       twitter: '',
       facebook: '',
       linkedin: '',
-      youotube: '',
+      youtube: '',
       instagram: '',
       errors: {}
     }
@@ -39,67 +40,73 @@ class CreateProfile extends Component {
   }
 
   render() {
+    const { errors, displaySocialInputs } = this.state;
 
-    //Select option for status
+    let socialInputs;
+
+    if (displaySocialInputs) {
+      socialInputs = (
+        <div>
+          <InputGroup
+            placeholder="Twitter Profile URL"
+            name="twitter"
+            icon="fab fa-twitter"
+            value={this.state.twitter}
+            onChange={this.onChange}
+            error={errors.twitter}
+          />
+
+          <InputGroup
+            placeholder="Facebook Page URL"
+            name="facebook"
+            icon="fab fa-facebook"
+            value={this.state.facebook}
+            onChange={this.onChange}
+            error={errors.facebook}
+          />
+
+          <InputGroup
+            placeholder="Linkedin Profile URL"
+            name="linkedin"
+            icon="fab fa-linkedin"
+            value={this.state.linkedin}
+            onChange={this.onChange}
+            error={errors.linkedin}
+          />
+
+          <InputGroup
+            placeholder="YouTube Channel URL"
+            name="youtube"
+            icon="fab fa-youtube"
+            value={this.state.youtube}
+            onChange={this.onChange}
+            error={errors.youtube}
+          />
+
+          <InputGroup
+            placeholder="Instagram Page URL"
+            name="instagram"
+            icon="fab fa-instagram"
+            value={this.state.instagram}
+            onChange={this.onChange}
+            error={errors.instagram}
+          />
+        </div>
+      );
+    }
+
+    // Select options for status
     const options = [
-      { label: '* Select Professional Status', value: 0},
+      { label: '* Select Professional Status', value: 0 },
       { label: 'Developer', value: 'Developer' },
-      { label: 'Senior Developer', value: 'Senior Developer' },
       { label: 'Junior Developer', value: 'Junior Developer' },
+      { label: 'Senior Developer', value: 'Senior Developer' },
       { label: 'Manager', value: 'Manager' },
       { label: 'Student or Learning', value: 'Student or Learning' },
       { label: 'Instructor or Teacher', value: 'Instructor or Teacher' },
       { label: 'Intern', value: 'Intern' },
       { label: 'Other', value: 'Other' }
     ];
-    const { errors,displaySocialInputs } = this.state;
-    let displaySocialInputs;
-    if (displaySocialInputs) {
-      socialInputs = (
-        <div>
-          <InputGroup 
-            placeholder='Twitter profile URL'
-            name= 'twitter'
-            icon= 'fab fa-twitter'
-            value= {this.state.twitter}
-            onChange= {this.onChange}
-            error= {errors.twitter}
-          />
-          <InputGroup 
-            placeholder='Facebook profile URL'
-            name= 'facebook'
-            icon= 'fab fa-facebook'
-            value= {this.state.facebook}
-            onChange= {this.onChange}
-            error= {errors.facebook}
-          />
-          <InputGroup 
-            placeholder='Linkedin profile URL'
-            name= 'linkedin'
-            icon= 'fab fa-linkedin'
-            value= {this.state.linkedin}
-            onChange= {this.onChange}
-            error= {errors.linkedin}
-          />
-          <InputGroup 
-            placeholder='Youtube profile URL'
-            name= 'youtube'
-            icon= 'fab fa-youtube'
-            value= {this.state.youtube}
-            onChange= {this.onChange}
-            error= {errors.youtube}
-          />
-          <InputGroup 
-            placeholder='Instagram profile URL'
-            name= 'instagram'
-            icon= 'fab fa-instagram'
-            value= {this.state.instagram}
-            onChange= {this.onChange}
-            error= {errors.instagram}
-          />
-        </div>
-      )
-    }
 
     return (
       <div className='create-profile'>
@@ -188,12 +195,8 @@ class CreateProfile extends Component {
                     </button>
                     <span className='text-muted'> Optional </span>
                 </div>
-                {socialInputs}
-                <input 
-                  type='submit'
-                  value='Submit'
-                  className='btn btn-info btn-block mt-4'
-                />
+                  {socialInputs}
+                <input type='submit'value='Submit'className='btn btn-info btn-block mt-4' />
               </form>
             </div>
           </div>
@@ -213,4 +216,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 });
 
-export default connect(null)(CreateProfile);
+export default connect(mapStateToProps)(CreateProfile);
