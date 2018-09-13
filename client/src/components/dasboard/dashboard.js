@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profileActions';
 import Spinner from '../common/Spinner';
 import { Link } from 'react-router-dom';
+import ProfileActions from './ProfileActions';
+
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -24,6 +26,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className='lead text-muted'>Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link></p>
+            <ProfileActions />
           </div>
         )
       } else {
