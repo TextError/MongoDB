@@ -79,21 +79,21 @@ class AddExperience extends Component {
                   name = 'company'
                   value = {this.state.company}
                   onChange = {this.onChange}
-                  errors = {errors.company}
+                  error = {errors.company}
                 />
                 <TextFieldGroup 
                   placeholder = '* Job Title'
                   name = 'title'
                   value = {this.state.title}
                   onChange = {this.onChange}
-                  errors = {errors.title}
+                  error = {errors.title}
                 />
                 <TextFieldGroup 
                   placeholder = 'Location'
                   name = 'location'
                   value = {this.state.location}
                   onChange = {this.onChange}
-                  errors = {errors.location}
+                  error = {errors.location}
                 />
                 <h6>From Date</h6>
                 <TextFieldGroup 
@@ -101,7 +101,7 @@ class AddExperience extends Component {
                   type = 'date'
                   value = {this.state.from}
                   onChange = {this.onChange}
-                  errors = {errors.from}
+                  error = {errors.from}
                 />
                 <h6>To Date</h6>
                 <TextFieldGroup 
@@ -109,7 +109,7 @@ class AddExperience extends Component {
                   type = 'date'
                   value = {this.state.to}
                   onChange = {this.onChange}
-                  errors = {errors.to}
+                  error = {errors.to}
                   disabled = { this.state.disabled ? 'disabled' : ''}
                 />
                 <div className='form-check mb-4'>
@@ -134,7 +134,7 @@ class AddExperience extends Component {
                   name = 'discription'
                   value = {this.state.discription}
                   onChange = {this.onChange}
-                  errors = {errors.discription}
+                  error = {errors.discription}
                   info = 'Tell us about the position'
                 />
                 <input
