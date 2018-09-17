@@ -48,7 +48,7 @@ class AddExperience extends Component {
       from: this.state.from,
       to: this.state.to,
       current: this.state.current,
-      discription: this.state.discription
+      description: this.state.description
     };
 
     this.props.addExperience(expData, this.props.history);
@@ -71,7 +71,7 @@ class AddExperience extends Component {
             <div className='col-md-8 m-auto'>
               <Link to='/dashboard' className='btn btn-light'>Go back</Link>
               <h1 className='display-4 text-center'>Add Experience</h1>
-              <p className='text-lead text-center'>Add eny job or position that you have had in the past or current</p>
+              <p className='lead text-center'>Add any job or position that you have had in the past or current</p>
               <small className='d-block pb-3'>* = required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup 
