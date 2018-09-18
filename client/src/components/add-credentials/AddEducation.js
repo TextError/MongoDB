@@ -89,7 +89,7 @@ class AddEducation extends Component {
                   error = {errors.degree}
                 />
                 <TextFieldGroup 
-                  placeholder = 'Field of study'
+                  placeholder = '* Field of study'
                   name = 'fieldofstudy'
                   value = {this.state.fieldofstudy}
                   onChange = {this.onChange}
