@@ -18,7 +18,7 @@ class Profiles extends Component {
     if (profiles === null || loading) {
       profileItems = <Spinner />;
     } else {
-      if(profiles.length < 0 ) {
+      if(profiles.length > 0 ) {
         <h1>Profiles here</h1>
       } else {
         profileItems = <h4>No profiles found...</h4>
@@ -44,10 +44,10 @@ class Profiles extends Component {
 Profiles.propTypes = {
   getProfiles: PropTypes.func.isRequire,
   profile: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { getProfiles })(Profiles)
+export default connect(mapStateToProps, { getProfiles })(Profiles);
