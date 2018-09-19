@@ -11,26 +11,30 @@ class ProfileGithub extends Component {
       count: 5,
       sort: 'created: asc',
       repos: [],
-      errors: {}
+      errors: ''
     };
   }
 
   componentDidMount() {
     const { username } = this.props;
-    const { count, sort, clientId, clientSecret, errors } = this.state;
+    const { count, sort, clientId, clientSecret } = this.state;
 
     fetch(
       `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
     )
       .then(res => res.json())
       .then(data => {
-        if (this.refs.myRef) {
-          this.setState({ repos: data });
+        if(data.message === 'Not Found') {
+          this.setState({
+            errors: data.message
+          })
+        } else {
+          if (this.refs.myRef) {
+            this.setState({ repos: data });
+          }
         }
       })
-      .catch(err => this.setState({
-        errors: err
-      }));
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -65,7 +69,7 @@ class ProfileGithub extends Component {
       <div ref="myRef">
         <hr />
         <h3 className="mb-4">Latest Github Repos</h3>
-        {errors === null ? (<span>{errors}</span>) : repoItems}
+        {errors === 'Not Found' ? (<span>GitHub Username {errors}</span>) : repoItems}
       </div>
     );
   }
