@@ -29,11 +29,10 @@ class ProfileGithub extends Component {
           this.setState({
             errors: data.message
           })
-        } else {
-          if (this.refs.myRef) {
+        }
+          if (this.refs.myRef && isEmpty(data.message)) {
             this.setState({ repos: data });
           }
-        }
       })
       .catch(err => console.log(err));
   }
