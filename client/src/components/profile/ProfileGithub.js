@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import isEmpty from '../../Validation/is_empty';
 
 class ProfileGithub extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class ProfileGithub extends Component {
     )
       .then(res => res.json())
       .then(data => {
-        if(data.message === 'Not Found') {
+        if(!isEmpty(data.message)) {
           this.setState({
             errors: data.message
           })
@@ -69,7 +70,7 @@ class ProfileGithub extends Component {
       <div ref="myRef">
         <hr />
         <h3 className="mb-4">Latest Github Repos</h3>
-        {errors === 'Not Found' ? (<span>GitHub Username {errors}</span>) : repoItems}
+        {!isEmpty(errors) === true ? (<span>{errors}</span>) : repoItems}
       </div>
     );
   }
