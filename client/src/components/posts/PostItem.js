@@ -20,9 +20,18 @@ class PostItem extends Component {
     this.props.removeLike(id);
   }
 
+  findUserLike(likes) {
+    const { auth } = this.props;
+    if (likes.filter(like => like.user === auth.user.id).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
 
-    const { post, auth } = this.props;
+    const { post, auth, showActions } = this.props;
 
     return (
       <div className="card card-body mb-3">
@@ -38,8 +47,9 @@ class PostItem extends Component {
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
-            <button onClick={this.onLikeClick(post._id)} type="button" className="btn btn-light mr-1">
-              <i className="text-info fas fa-thumbs-up"></i>
+            {showActions ? (<span>
+              <button onClick={this.onLikeClick(post._id)} type="button" className="btn btn-light mr-1">
+              <i className={classnames('fas fa-thumbs-up', {'text-info' : this.findUserLike(post.likes)})}></i>
               <span className="badge badge-light">{post.likes.length}</span>
             </button>
             <button onClick={this.onUnLikeClick(post._id)} type="button" className="btn btn-light mr-1">
@@ -51,11 +61,16 @@ class PostItem extends Component {
             {post.user === auth.user.id ? (<button className='btn btn-danger mr-1' type='button' onClick={this.onDeleteClick(post._id)}>
               <i className='fas fa-times' />
             </button>) : null}
+            </span>) : null}
           </div>
         </div>
       </div>
     )
   }
+}
+
+PostItem.defaultProps = {
+  showActions: true
 }
 
 PostItem.propTypes = {
