@@ -20,7 +20,7 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import Dashboard from './components/dasboard/Dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 import { clearCurrentProfile } from './actions/profileActions';
 import CreateProfile from './components/create_profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
@@ -67,7 +67,7 @@ class App extends Component {
                 <Route exact path='/profiles' component={ Profiles } />
                 <Route exact path='/profile/:handle' component={ Profile } />
                 <Switch>
-                  <PrivateRoute exact path='/dashboard' component={ Dashboard } />
+                  <PrivateRoute exact path='/dashboard' component={ Dashboard }/>
                 </Switch>
                 <Switch>
                   <PrivateRoute exact path='/create-profile' component={ CreateProfile } />
