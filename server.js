@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const path = require('path')
 
 //-------------------------------------------
 
@@ -53,6 +54,17 @@ const delete_comment_post = require('./routes/api/posts/delete_comment_post');
 app.use('/api/users', users, user_login, user_register);
 app.use('/api/profile', profile, create_profile, profile_handle, profile_id, profile_all,profile_experience,profile_education,experience_delete,education_delete,profile_delete);
 app.use('/api/posts', posts, create_post, find_post, delete_post, like_post, unlike_post, comment_post, delete_comment_post);
+
+//-------------------------------------------
+
+//Server static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  //Set static folder
+  app.use(express.static('client/build'));
+  app.get('*', (res, req) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 //-------------------------------------------
 
