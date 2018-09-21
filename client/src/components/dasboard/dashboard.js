@@ -66,16 +66,16 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  profile: state.profile,
-  auth: state.auth
-});
-
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   deleteAccount: PropTypes.func.isRequired
-}
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile,
+  auth: state.auth
+});
 
 export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(Dashboard);
