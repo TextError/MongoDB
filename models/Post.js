@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const Scheema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-//Create Scheema
-const PostScheema = new Scheema({
+// Create Schema
+const PostSchema = new Schema({
   user: {
-    type: Scheema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'users'
   },
   text: {
@@ -12,7 +12,7 @@ const PostScheema = new Scheema({
     required: true
   },
   name: {
-    type: String,
+    type: String
   },
   avatar: {
     type: String
@@ -20,7 +20,7 @@ const PostScheema = new Scheema({
   likes: [
     {
       user: {
-        type: Scheema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'users'
       }
     }
@@ -28,7 +28,7 @@ const PostScheema = new Scheema({
   comments: [
     {
       user: {
-        type: Scheema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'users'
       },
       text: {
@@ -53,4 +53,4 @@ const PostScheema = new Scheema({
   }
 });
 
-module.exports = Post_Scheema = mongoose.model('post', PostScheema);
+module.exports = Post = mongoose.model('post', PostSchema);

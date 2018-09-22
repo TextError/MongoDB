@@ -1,10 +1,8 @@
-//Conventional for models : singular and use capital letter
-
 const mongoose = require('mongoose');
-const Scheema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-//Create Scheema
-const UserScheema = new Scheema({
+// Create Schema
+const UserSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -23,7 +21,7 @@ const UserScheema = new Scheema({
   date: {
     type: Date,
     default: Date.now
-  },
+  }
 });
 
-module.exports = User_Scheema = mongoose.model('users', UserScheema);
+module.exports = User = mongoose.model('users', UserSchema);

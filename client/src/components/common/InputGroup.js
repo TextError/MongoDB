@@ -7,14 +7,14 @@ const InputGroup = ({
   placeholder,
   value,
   error,
-  onChange,
   icon,
-  type
+  type,
+  onChange
 }) => {
   return (
     <div className="input-group mb-3">
-      <div className='input-group-prepend'>
-        <span className='input-group-text'>
+      <div className="input-group-prepend">
+        <span className="input-group-text">
           <i className={icon} />
         </span>
       </div>
@@ -27,25 +27,23 @@ const InputGroup = ({
         value={value}
         onChange={onChange}
       />
-      {error && (
-        <div className="invalid-feedback">{error}</div>
-      )}
+      {error && <div className="invalid-feedback">{error}</div>}
     </div>
-  )
-}
+  );
+};
 
 InputGroup.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   icon: PropTypes.string,
-  type: PropTypes.string,
   error: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-}
+  type: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+};
 
 InputGroup.defaultProps = {
   type: 'text'
-}
+};
 
 export default InputGroup;
